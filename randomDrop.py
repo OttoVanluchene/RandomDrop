@@ -17,26 +17,20 @@ def get_page_drops(page):
     return response.json()
 
 def random_raindrop():
-    user_stats = fetch_user()
-    print(f"User Stats: {user_stats}")
+    user_stats = fetch_user()   
 
     user_total_drops = [
         item for item in user_stats['items'] if item['_id'] == 0][0]
-    print(f"User Total Drops: {user_total_drops}")
 
     pages = user_total_drops['count'] // 50 + 1
-    print(f"Pages: {pages}")
 
     random_page = random.randint(1, pages)
-    print(f"Random Page: {random_page}")
 
     page_drops = get_page_drops(random_page)
 
     random_drop = random.choice(page_drops['items'])
-    print(f"Random Drop: {random_drop}")
 
     return random_drop['link']
-
 
 if __name__ == "__main__":
     random_drop_link = random_raindrop()
@@ -44,4 +38,4 @@ if __name__ == "__main__":
     webbrowser.open(random_drop_link)
 
     # keep the window open
-    input("Press Enter to continue...")
+    # input("Press Enter to continue...")
